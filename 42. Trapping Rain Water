@@ -1,0 +1,25 @@
+https://www.geeksforgeeks.org/dsa/trapping-rain-water/
+
+
+class Solution {
+    public int trap(int[] height) {
+        int left = 1;
+        int right = height.length - 2;
+        int lMax = height[left-1];
+        int rMax = height[right+1];
+        int result = 0;
+        while(left<=right){
+            if(lMax<=rMax){
+                result = result + Math.max(0,lMax-height[left]);
+                lMax = Math.max(lMax,height[left]);
+                left = left+1;
+            }
+            else{
+                result = result + Math.max(0,rMax-height[right]);
+                rMax= Math.max(rMax,height[right]);
+                right = right-1;
+            }
+        }
+        return result;
+    }
+}
